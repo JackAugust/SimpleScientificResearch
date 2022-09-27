@@ -203,9 +203,11 @@ def GetThePaperTitle(MainPape, KW):
 '''
 # 最终：当前已遍历论文总数为： 622369 ,已遍历对应关键字的论文总数为： 808 ,拥有KW的期刊论文总数为： 273558
 
+
 AllPaperNum = 0  # 这是记录所有论文的个数
 AllPaperwithKW = 0  # 这是记录对应KW的个数
 TruePaperwithKW = 0  # 这是记录存有KW下的总论文数
+KW = "blockchain" ## 这里的关键字是可以修改的
 SetRows = 0
 rows = NewSheets1.rows
 columns = NewSheets1.columns
@@ -217,7 +219,6 @@ for row in rows:
     print(GetCol, row_val)
     print(row_val[GetCol - 2])  # 这里输出当前行的最后一位，判断是否已经写入，正常是字符串，然后写完后就是所有论文的数目
     SetRows = SetRows + 1
-    KW = "blockchain" ## 这里的关键字是可以修改的
     if row_val[GetCol - 2].isdigit() != True:
     	# 这里是写入 期刊的信息，格式有点像 makedown
         # with open('txt-src/AllPaperInfo.txt', 'a', encoding='utf-8') as file:
@@ -273,3 +274,4 @@ for row in rows:
     #     f.write(str(AllPaperwithKW))
     #     f.write(" ,拥有KW的期刊论文总数为： ")
     #     f.write(str(TruePaperwithKW) + '\n')
+

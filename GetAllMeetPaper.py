@@ -159,7 +159,8 @@ SetRows = 0
 # 第二次强行停止：
 # 当前已遍历论文总数为： 311439 ,已遍历对应关键字的论文总数为： 1435 ,会议总数为： 5629 ,拥有KW的会议总数为： 467
 # 6 ['计算机科学理论', 'B', 'CCC', 'IEEE Conference on Computational Complexity', 'IEEE',
-''' #同样的，当因为网络问题而断开链接后，直接修改参数即可
+''' 
+#同样的，当因为网络问题而断开链接后，直接修改参数即可
 AllPaperFromMeet = 311439 # 论文总数
 AllPaperwithKWFromMeet = 1435 # 对应关键字的论文总数
 AllMeet = 5629 # 会议总数
@@ -223,35 +224,3 @@ for row in rows:
 
 # 当前已遍历论文总数为： 650207 ,已遍历对应关键字的论文总数为： 1605 ,会议总数为： 8458 ,拥有KW的会议总数为： 550
 
-
-    '''
-    这里需要向表格内写入采集到的数据
-    格式是：把 GetMeetPaperAll（）返回的 MeetPaperAll 元组 数据拿到
-    其中 返回的 MeetPaperAll 最后两位分别是： [-2]会议的遍历论文数量 和 [-1]含KW的论文数量
-    然后 做个判断：
-    MeetPaperAll[-1] == '0' 直接在每行的最后写数据
-    不然就是说有KW，因为含KW的论文数量就是 MeetPaperAll 之前的元组的内容和长度，所以做个循环写入表格
-    因为要实现论文名称是有超链接直接可以点击获取的，所以格式需要一定的要求
-    是按 第一列 年份，第二列 标题，第二列写入超链接 ，然后倒数第二列是遍历完的所有论文数，倒数第一列是遍历完符合KW的论文总数
-    实现代码类似这种：
-if NowPaperwithKW != 0:
-   TruePaperwithKW = TruePaperwithKW + NowPaperNum  # 计算涉及到关键字的期刊的论文总数
-   for i in range(NowPaperwithKW):
-        print("第 " + str(SetRows) + " 行，第 " + str(GetCol + 1 + i * 2) + " 列 在写入")
-        NewSheets1.cell(row=SetRows, column=GetCol + 1 + i * 2).value = paperInfo[i][0]
-        NewSheets1.cell(row=SetRows, column=GetCol + 2 + i * 2).value = paperInfo[i][2]
-        NewSheets1.cell(row=SetRows, column=GetCol + 2 + i * 2).hyperlink = paperInfo[i][1] #这个就是超链接
-    然后数据写入表格是一方面
-    还有一方面是把这些数据记录下来，比如我在 GetMeetPaperAll（） 里注释掉的内容就是要记录每次遍历的论文题目
-    然后论文总数，会议数量，涉及到KW的论文总数
-    然后这些写入log中，格式是仿md的，所以大标题就是 # + 会议名称，小标题就是
-    每一年 ## + 年份 + ‘，’+这一年的论文数
-    然后再写入具体的论文标题
-    还有一些是数据的采集和输出，比如目前已经爬到哪个会议，现在一共爬了多少篇 等等
-    内容方面类似这样：
-    # 计算机体系结构/并行与分布计算/存储系统	A-1.75	TOCS	ACM Transactions on Computer Systems	ACM	https://dblp.uni-trier.de/db/journals/tocs/	0734-2071	计算机：理论方法	4	
-    ## 当前已遍历论文总数为： 480 ,已遍历对应关键字的论文总数为： 0 ,拥有KW的期刊论文总数为： 0
-    
-    这个是一件很有意思的事情，可以清楚的知道 区块链 在 这里类别上的 发表情况，
-    比如打开表格，一些行的末尾写着 0，而有些行的论文 全是年份和论文，那这个就是区块链可以投递的最佳选择
-    '''
